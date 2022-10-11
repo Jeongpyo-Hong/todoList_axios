@@ -16,8 +16,8 @@ const Todo = ({ todo }) => {
   return (
     <div>
       <div>
-        <h4 key={todo.id}>{todo.title}</h4>
-        <p key={todo.id}>{todo.content}</p>
+        <h4>{todo.title}</h4>
+        <p>{todo.content}</p>
       </div>
       <button onClick={onDeleteHandler}>삭제</button>
       <button onClick={onToggleHandler}>
