@@ -2,6 +2,7 @@
 const ADD_TODO = "ADD_TODO";
 const DELETE_TODO = "DELETE_TODO";
 const TOGGLE_STATUS_TODO = "TOGGLE_STATUS_TODO";
+// const GET_TODO_BY_ID = "GET_TODO_BY_ID";
 
 // Action Creator
 export const addTodo = (payload) => ({
@@ -23,6 +24,13 @@ export const toggleStatusTodo = (payload) => {
   };
 };
 
+// export const getTodoById = (payload) => {
+//   return {
+//     type: GET_TODO_BY_ID,
+//     payload,
+//   };
+// };
+
 // initialState
 const initialState = [
   {
@@ -35,7 +43,7 @@ const initialState = [
 
 // Reducer
 const todos = (state = initialState, action) => {
-  console.log(action);
+  console.log("action:", action);
   switch (action.type) {
     case ADD_TODO:
       console.log(action);
@@ -46,6 +54,8 @@ const todos = (state = initialState, action) => {
       return state.map((todo) =>
         todo.id === action.payload ? { ...todo, isDone: !todo.isDone } : todo
       );
+    // case GET_TODO_BY_ID:
+    //   return state.filter((todo) => todo.id === action.payload);
     default:
       return state;
   }
