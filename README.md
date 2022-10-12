@@ -1,6 +1,6 @@
-# TODOLIST
+# 🌞TODOLIST🌞
 
-### 폴더 구조
+### **폴더 구조**
 [ 최상위 ]
 - App.js : Router
 - App.css : css reset
