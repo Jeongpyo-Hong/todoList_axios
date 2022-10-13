@@ -11,7 +11,7 @@ const Detail = () => {
   console.log("id:", id); // 콘솔 창에서 문자열은 흰색, 숫자는 보라색
 
   const todo = todos.find((todo) => {
-    return todo.id === +id;
+    return todo.id === +id; // 문자열이므로 숫자로 변환
   });
   console.log("todo:", todo);
 
