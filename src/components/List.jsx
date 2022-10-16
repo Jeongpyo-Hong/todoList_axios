@@ -1,11 +1,24 @@
-import React from "react";
-import { useSelector } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Todo from "./Todo";
 import styled from "styled-components";
+import { __getTodos } from "../redux/modules/todos";
 
 const List = () => {
-  const todos = useSelector((state) => state.todos);
-  console.log("List_todos", todos);
+  const dispatch = useDispatch();
+  const { isLoading, error, todos } = useSelector((state) => state.todos);
+
+  useEffect(() => {
+    dispatch(__getTodos());
+  }, [dispatch]);
+
+  if (isLoading) {
+    return <h1>로딩중</h1>;
+  }
+
+  if (error) {
+    return console.log(error);
+  }
 
   return (
     <ListContainer>

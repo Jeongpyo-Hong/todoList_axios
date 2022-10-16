@@ -1,18 +1,18 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { deleteTodo, toggleStatusTodo } from "../redux/modules/todos";
+import { __deleteTodo, __toggleStatusTodo } from "../redux/modules/todos";
 import styled from "styled-components";
 
 const Todo = ({ todo }) => {
   const dispatch = useDispatch();
 
   const onDeleteHandler = () => {
-    dispatch(deleteTodo(todo.id));
+    dispatch(__deleteTodo(todo.id));
   };
 
   const onToggleHandler = () => {
-    dispatch(toggleStatusTodo(todo.id));
+    dispatch(__toggleStatusTodo(todo.id));
   };
 
   return (
@@ -22,6 +22,7 @@ const Todo = ({ todo }) => {
       navigate는 함수 안에서 사용할 수 있음(ex. 로그인 기능과 연결,,)
       */}
       <LinkTitle to={`/${todo.id}`}>상세보기</LinkTitle>
+      <TodoAuthor>이름: {todo.author}</TodoAuthor>
       <TodoTitle>{todo.title}</TodoTitle>
       <TodoContent>{todo.content}</TodoContent>
       <TodoBtnBox>
@@ -50,6 +51,11 @@ const TodoBox = styled.div`
   margin-bottom: 10px 0px;
 `;
 
+const TodoAuthor = styled.p`
+  font-size: 20px;
+  margin: 10px 0px;
+`;
+
 const TodoTitle = styled.p`
   font-size: 20px;
   margin: 20px 0px;
@@ -57,7 +63,7 @@ const TodoTitle = styled.p`
 
 const TodoContent = styled.p`
   font-size: 16px;
-  margin-bottom: 40px;
+  margin-bottom: 10px;
 `;
 
 const TodoBtnBox = styled.div`

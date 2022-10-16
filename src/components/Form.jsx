@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { addTodo } from "../redux/modules/todos";
+import { __addTodo } from "../redux/modules/todos";
 import styled from "styled-components";
 
 const Form = () => {
@@ -17,17 +17,16 @@ const Form = () => {
       [name]: value,
     });
   };
+  console.log("inputs:", inputs);
 
   const onSubmitHandler = (e) => {
     e.preventDefault();
     if (inputs.title.trim() === "" || inputs.content.trim() === "") return;
 
     dispatch(
-      addTodo({
+      __addTodo({
         id: Date.now(),
-        ...inputs, // 아래가 풀어놓은 모습
-        // title: inputs.title,
-        // content: inputs.content,
+        ...inputs,
         isDone: false,
       })
     );
