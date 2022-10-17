@@ -1,4 +1,3 @@
-import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { __deleteTodo, __toggleStatusTodo } from "../redux/modules/todos";
@@ -7,13 +6,18 @@ import styled from "styled-components";
 const Todo = ({ todo }) => {
   const dispatch = useDispatch();
 
+  const todoId = todo.id;
+  const todoIsDone = todo.isDone;
+
   const onDeleteHandler = () => {
-    dispatch(__deleteTodo(todo.id));
+    dispatch(__deleteTodo(todoId));
   };
 
   const onToggleHandler = () => {
-    dispatch(__toggleStatusTodo(todo.id));
+    dispatch(__toggleStatusTodo({ ...todo, isDone: !todo.isDone }));
   };
+
+  // _editStatusTodo({ ...todo, body: inputs.body });
 
   return (
     <TodoBox>
@@ -21,14 +25,14 @@ const Todo = ({ todo }) => {
       Link는 약간 외부 느낌?,, navigate가 기능을 더 추가할 수 있음(자체기능들,,) 
       navigate는 함수 안에서 사용할 수 있음(ex. 로그인 기능과 연결,,)
       */}
-      <LinkTitle to={`/${todo.id}`}>상세보기</LinkTitle>
+      <LinkTitle to={`/${todoId}`}>상세보기</LinkTitle>
       <TodoAuthor>이름: {todo.author}</TodoAuthor>
       <TodoTitle>{todo.title}</TodoTitle>
       <TodoContent>{todo.content}</TodoContent>
       <TodoBtnBox>
         <TodoDeleteBtn onClick={onDeleteHandler}>삭제</TodoDeleteBtn>
         <TodoEditBtn onClick={onToggleHandler}>
-          {todo.isDone === false ? "완료" : "취소"}
+          {todoIsDone === false ? "완료" : "취소"}
         </TodoEditBtn>
       </TodoBtnBox>
     </TodoBox>
